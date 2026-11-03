@@ -18,8 +18,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from core import views
+from . import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("home/", views.home, name="home"),
+    path('', views.home, name="home"),
+    
+    # Rutas usando Vistas Basadas en Clases (CBV)
+    path('catalogo/', views.catalogo_lugares, name='catalogo'),
+    path('catalogo/categoria/<int:categoria_id>/', views.catalogo_lugares, name='catalogo_por_categoria'),
+    path('lugar/<int:lugar_id>/', views.detalle_lugar, name='detalle_lugar'),
 ]

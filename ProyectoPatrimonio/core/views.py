@@ -1,5 +1,41 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from .models import Categoria, LugarPatrimonial
 
 # Create your views here.
+# VISTA BASADA EN FUNCIONES (FBV)
 def home(request):
-    return render(request, 'core/home.html')
+    lugares = LugarPatrimonial.objects.all().order_by('-id')[:3]
+    categorias = Categoria.objects.all()
+    
+    data = {
+        'lugares': lugares,
+        'categorias': categorias
+    }
+    return render(request, 'core/home.html', data)
+
+def catalogo_lugares(request, categoria_id=None):
+    categorias = Categoria.objects.all()
+    
+    # SI recibe un ID de categoría, filtramos; si no, mostramos
+    if categoria_id:
+        categoria_seleccionada = get_object_or_404(Categoria, id=categoria_id)
+        lugares = LugarPatrimonial.objects.filter(categoria=categoria_seleccionada)
+    else:
+        categoria_seleccionada = None
+        lugares = LugarPatrimonial.objects.all()
+        
+    data = {
+        'categorias': categorias,
+        'lugares': lugares,
+        'categoria_seleccioanda': categoria_seleccionada
+    }
+    return render(request, 'core/catalogo.html', data)
+
+def detalle_lugar(request, lugar_id):
+    lugar = get_object_or_404(LugarPatrimonial, id=lugar_id)
+    
+    data = {
+        'lugar': lugar
+    }
+    return render(request, 'core/detalle.html', data)
+    

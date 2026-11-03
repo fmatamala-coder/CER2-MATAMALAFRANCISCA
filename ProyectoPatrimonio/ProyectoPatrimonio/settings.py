@@ -126,3 +126,11 @@ MAILERS = {
         "BACKEND": "django.core.mail.backends.console.EmailBackend",
     },
 }
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://organic-garbanzo-4q6x4q5ggq742qrg9-8000.app.github.dev'
+]
+
+ALLOWED_HOSTS = ['.app.github.dev', 'localhost', '127.0.0.1']
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
