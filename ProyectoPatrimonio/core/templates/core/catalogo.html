@@ -1,11 +1,61 @@
+{% extends 'core/base.html' %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catalogo</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'core/css/estilos.css' %}?v=3"/>
+    <title>{% block title %}Catálogo Patrimonial - Catálogo{% endblock %}</title>
 </head>
 <body>
-    
+    {% block content %}
+    <main>
+        <section>
+            <p><a href="{% url 'core:home' %}">← Volver al Inicio</a></p>
+            <h1>Catálogo de Lugares Patrimoniales</h1>
+        </section>
+    </main>
+
+    <aside> <!-- sección lateral para filtrar por categoría -->
+        <h3>Filtrar por Categoría</h3>
+        <ul>
+            <!-- opción para quitar el filtro y ver todo -->
+            <li><a href="{% url 'core:catalogo' %}">Todas las categorías</a></li>
+            
+            {% for cat in categorias %}
+                <li>
+                    <a href="{% url 'core:catalogo_por_categoria' cat.id %}">
+                        {{ cat.nombre }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </aside>
+
+    <main>
+        <!-- mostramos título dinámico según si hay categoría seleccionada -->
+        {% if categoria_seleccionada %}
+            <h2>Filtrado por: {{ categoria_seleccionada.nombre }}</h2>
+        {% else %}
+            <h2>Todos los Lugares</h2>
+         
+        {% endif %}
+
+        <div class="lista-lugares">
+            {% for lugar in lugares %}
+                <div class="lugar-item">
+                    <h3>{{ lugar.nombre }}</h3>
+                    <p>{{ lugar.descripcion|truncatewords:20 }}</p>
+                    <p><strong>Ubicación:</strong> {{ lugar.ubicacion }}</p>
+                    <a href="{% url 'core:detalle_lugar' lugar.id %}">Ver Ficha Completa</a>
+                </div>
+            {% empty %}
+                <p>No se encontraron lugares en esta categoría.</p>
+            {% endfor %}
+        </div>
+        {% endblock %}
+    </main>
 </body>
 </html>

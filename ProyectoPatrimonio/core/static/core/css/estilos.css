@@ -1,0 +1,158 @@
+:root {
+    color-scheme: light;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #29251f;
+    background: #f5f2eb;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 1rem 1rem;
+    text-align: left;
+    box-shadow: 0 3px 14px rgb(41 37 31 / 10%);
+}
+
+header h1 {
+    margin: 0 0 0.75rem;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+header nav a,
+header p a {
+    color: #000000;
+}
+
+a {
+    color: #8f2d20;
+}
+
+a:hover {
+    color: #5f1c15;
+}
+
+main,
+aside {
+    width: min(100% - 2rem, 1100px);
+    margin: 2rem auto;
+}
+
+main > section:not(.bienvenida),
+aside {
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 0.75rem;
+    box-shadow: 0 3px 14px rgb(41 37 31 / 10%);
+}
+
+main > section + section {
+    margin-top: 1.5rem;
+}
+
+.bienvenida {
+    display: grid;
+    min-height: 360px;
+    place-items: center;
+    padding: 2rem;
+    color: #fff;
+    text-align: center;
+    background-image:
+        linear-gradient(rgb(0 0 0 / 50%), rgb(0 0 0 / 50%)),
+        url("../img/bienvenida_patrimonios.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 0.75rem;
+    box-shadow: 0 3px 14px rgb(41 37 31 / 10%);
+}
+
+.bienvenida h1 {
+    margin: 0;
+    text-shadow: 0 2px 6px rgb(0 0 0 / 45%);
+}
+
+.bienvenida a {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #8f2d20;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 45%);
+    transition: opacity 0.3s ease;
+}
+
+.bienvenida a:hover {
+    opacity: 0.9;
+}
+
+.logo img {
+    height: 100px;
+    width: auto;
+    object-fit: contain; /* Asegura que la imagen se escale bien sin recortarse */
+    display: inline-block; /* Asegura que la imagen se comporte como un elemento en línea */
+    vertical-align: middle;
+    transition: opacity 0.3s ease; /* Añade una transición suave para el efecto hover */
+
+}
+
+.logo img:hover {
+    opacity: 0.7; /* Reduce la opacidad de la imagen al pasar el ratón */
+}
+
+.lugares-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    gap: 1rem;
+}
+
+.lugares-grid .card {
+    margin: 0;
+    padding: 1rem;
+    border: 1px solid #e4d8c8;
+    border-radius: 0.5rem;
+    background: #fffdf9;
+}
+
+.lista-lugares .lugar-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid #e4d8c8;
+}
+
+.lista-lugares .lugar-item:first-child {
+    padding-top: 0;
+}
+
+.imagen-lugar img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+}
+
+@media (max-width: 600px) {
+    main,
+    aside {
+        width: min(100% - 1rem, 1100px);
+        margin: 0.5rem auto;
+    }
+
+    main > section,
+    aside {
+        padding: 1rem;
+    }
+}

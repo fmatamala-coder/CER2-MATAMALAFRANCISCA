@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Categoria, LugarPatrimonial
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 # VISTA BASADA EN FUNCIONES (FBV)
@@ -8,7 +9,7 @@ def home(request):
     categorias = Categoria.objects.all()
     
     data = {
-        'lugares': lugares,
+        'lugares_recientes': lugares,
         'categorias': categorias
     }
     return render(request, 'core/home.html', data)
@@ -38,4 +39,8 @@ def detalle_lugar(request, lugar_id):
         'lugar': lugar
     }
     return render(request, 'core/detalle.html', data)
-    
+
+@login_required(login_url='/admin/login/')
+def seccion_gestion(request):
+    # Si el usuario ha iniciado sesión, lo mandamos directo al panel admin
+    return redirect('/admin/')

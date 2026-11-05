@@ -1,11 +1,36 @@
+{% extends 'core/base.html' %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle Lugar</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'core/css/estilos.css' %}?v=3"/>
+    <title>{{ lugar.nombre }}</title>
 </head>
 <body>
-    
+    {% block content %}
+    <main>
+        <p><a href="{% url 'core:catalogo' %}">← Volver al Catálogo</a></p>
+        
+        <h1>{{ lugar.nombre }}</h1>
+        
+        <p><strong>Categoría:</strong> {{ lugar.categoria.nombre }}</p>
+        <p><strong>Ubicación:</strong> {{ lugar.ubicacion }}</p>
+        <p><strong>Año de Construcción:</strong> {{ lugar.anio_construccion }}</p>
+        
+        <hr>
+        
+        <h3>Descripción Histórica / Patrimonial</h3>
+        <p>{{ lugar.descripcion }}</p>
+        
+        {% if lugar.imagen %}
+            <div class="imagen-lugar">
+                <img src="{{ lugar.imagen }}" alt="Fotografía de {{ lugar.nombre }}">
+            </div>
+        {% endif %}
+        {% endblock %}
+    </main>
 </body>
 </html>

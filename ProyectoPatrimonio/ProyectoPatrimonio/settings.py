@@ -103,7 +103,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.1/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "es-ES"
 
 TIME_ZONE = "UTC"
 
@@ -117,6 +117,9 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+STATICFILES_DIRS = [
+    BASE_DIR / "core/static",
+]
 
 # Email
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
@@ -134,3 +137,9 @@ CSRF_TRUSTED_ORIGINS = [
 ALLOWED_HOSTS = ['.app.github.dev', 'localhost', '127.0.0.1']
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Ruta web pública para acceder a los archivos multimedia
+MEDIA_URL = '/media/'
+
+# Ruta del directorio donde se almacenarán los archivos multimedia
+MEDIA_ROOT = BASE_DIR / 'media'

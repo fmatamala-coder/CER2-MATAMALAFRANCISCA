@@ -16,16 +16,15 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
-from core import views
-from . import views
+from django.urls import include, path
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', views.home, name="home"),
-    
-    # Rutas usando Vistas Basadas en Clases (CBV)
-    path('catalogo/', views.catalogo_lugares, name='catalogo'),
-    path('catalogo/categoria/<int:categoria_id>/', views.catalogo_lugares, name='catalogo_por_categoria'),
-    path('lugar/<int:lugar_id>/', views.detalle_lugar, name='detalle_lugar'),
+    path("", include("core.urls")),
 ]
+
+# Esto permite que Django sirva las imágenes multimedia mientras desarrollas
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
