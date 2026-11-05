@@ -40,7 +40,7 @@
                     <div class="card">
                         <h3>{{ lugar.nombre }}</h3>
                         <p><strong>Ubicación:</strong> {{ lugar.ubicacion }}</p>
-                        <!-- Enlace dinámico al detalle usando el ID (RF03) -->
+                        <!-- Enlace dinámico al detalle usando el ID -->
                         <a href="{% url 'core:detalle_lugar' lugar.id %}">Ver más detalles</a>
                     </div>
                 {% empty %}
