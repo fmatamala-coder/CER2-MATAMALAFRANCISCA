@@ -13,20 +13,23 @@ La aplicación usa Django 6.1.2 y SQLite. No requiere instalar ni configurar un 
 
 Desde la raíz del repositorio, crea y activa un entorno virtual:
 
-```bash
-python -m venv .venv
-```
-
-En Linux o macOS:
-
-```bash
-source .venv/bin/activate
-```
-
 En Windows (PowerShell):
 
 ```powershell
-.venv\Scripts\Activate.ps1
+python -m venv .venv
+```
+
+Permitir la ejecución de scripts en PowerShell (Solo en Windows si aparece error de directivas):
+Si al intentar activar el entorno recibes un error sobre Execution Policy, ejecuta
+
+```powershell
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+Activar el entorno virtual:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
 ```
 
 Instala las dependencias del proyecto:
